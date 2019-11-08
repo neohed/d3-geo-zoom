@@ -18,15 +18,27 @@ const width = 860,
 
 const loc = [-1.8904, 52.4862];
 
+function projectionBounds(projection, maxlat) {
+    let yaw = projection.rotate()[0],
+        xymax = projection([-yaw+180-1e-6,-maxlat]),
+        xymin = projection([-yaw-180+1e-6, maxlat]);
+
+    return [xymin,xymax];
+}
+
 class MyScatterPlot extends React.Component {
     projection;
     path;
+    tlast;
+    slast;
     constructor(props) {
         super(props);
 
         this.state = {
             zoomTransform: null
         };
+        this.tlast = [0,0];
+        this.slast = null;
 
         this.updateD3(props);
 

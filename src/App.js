@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Chart from './map/MyChart'
+import Chart from './map2/MyChart'
 
 function App() {
   return (
