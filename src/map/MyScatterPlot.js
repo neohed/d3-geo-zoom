@@ -97,18 +97,15 @@ class MyScatterPlot extends React.Component {
 
         const xy = this.projection(loc);
         const [x, y] = xy;
-        const circle = <circle cx={(x)} cy={(y)} r="8" stroke="black" strokeWidth="3" fill="red" />;
+        const circle = <circle cx={(x)} cy={(y)} r="8" stroke="black" strokeWidth="1" fill="red" />;
 //console.log(this.zoom);
         return (
-            <svg width={width} height={height} style={svgStyle} ref={svg => this.svg = svg}>
+            <svg width={width} height={height} style={svgStyle} ref={svg => this.svg = svg} transform={zoomTransform}>
                 <g>
                     {data.map((d, i) => <path key={i} d={this.pathGenerator(d)} style={style} strokeWidth={1} />)}
                     {circle}
                 </g>
             </svg>
-            /*
-             transform={zoomTransform}
-             */
         )
     }
 }
